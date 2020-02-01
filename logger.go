@@ -11,16 +11,14 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-type Level int
-
 const (
-	Debug Level = iota + 1
-	Info
-	Warn
-	Error
+	Debug = "debug"
+	Info  = "info"
+	Warn  = "warn"
+	Error = "error"
 )
 
-func getLevel(level Level) zapcore.Level {
+func getLevel(level string) zapcore.Level {
 	switch level {
 	case Debug:
 		return zapcore.DebugLevel
@@ -36,7 +34,7 @@ func getLevel(level Level) zapcore.Level {
 }
 
 type Options struct {
-	Level    Level
+	Level    string
 	Filename string
 	MaxSize  int
 	MaxAge   int
